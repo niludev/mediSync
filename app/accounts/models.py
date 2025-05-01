@@ -3,7 +3,6 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from django.db import models
 
-
 class UserManager(BaseUserManager):
     def create_user(self, email, password, **extra_fields):
         if not email:
@@ -13,7 +12,10 @@ class UserManager(BaseUserManager):
 
         email = self.normalize_email(email)
         user = self.model(email=email, **extra_fields)
+
+        # Passwords must be set with set_password(); required if user is created outside admin
         user.set_password(password)
+
         user.save(using=self._db)
         return user
 
@@ -55,8 +57,8 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     objects = UserManager()
 
-    USERNAME_FIELD = 'email'  # username
-    REQUIRED_FIELDS = ['first_name', 'last_name']   # CLI
+    USERNAME_FIELD = 'email'  # field used for login (username)
+    REQUIRED_FIELDS = ['first_name', 'last_name']   # required when creating superuser from CLI
 
     def __str__(self):
         return self.email
