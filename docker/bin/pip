@@ -1,2 +1,2 @@
 #!/bin/bash
-docker compose run --rm --user "$(id -u):$(id -g)" web pip "$@"
+docker compose run --rm  web pip "$@"

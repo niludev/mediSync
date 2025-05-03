@@ -1,4 +1,5 @@
 var
+site-packages
 .env.local
 
 ReadMe.txt
