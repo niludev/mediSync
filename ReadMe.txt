@@ -4,6 +4,10 @@ docker/bin/python manage.py migrate
 for makemigrations:
 docker/bin/python manage.py makemigrations
 
+create a new app:
+docker/bin/python manage.py startapp ......
+
+
 for edit files:
 sudo chown -hR nilu:nilu .
 
